@@ -1,0 +1,60 @@
+<% layout("/layouts/boilerplate.ejs") %>
+    <header class="masthead" style="background-image: url('assets/img/home-bg.jpg')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="site-heading">
+                        <h1>Wander Write</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Main Content-->
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <!-- Search Form -->
+                <form action="/search" method="GET" class="search-form d-flex justify-content-center">
+                    <input type="text" name="title" placeholder="Search by blog title..." class="form-control" required>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+                <!-- View All Blogs Button -->
+                <% if (isSearch) { %>
+                    <form action="/home" method="GET" class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-secondary mt-5">View All Blogs</button>
+                    </form>
+                    <% } %>
+                        <hr class="my-4">
+                        <% blogs.forEach(blog=> { %>
+                            <div class="post-preview">
+                                <a href="/blog/<%= blog.slug %>">
+                                    <% if (blog.imageThumbnail) { %>
+                                        <img src="<%= blog.imageThumbnail %>" alt="Thumbnail" class="mb-2 rounded"
+                                            style="width: 100%; height: 300px;">
+                                        <% } %>
+                                            <h2 class="post-title">
+                                                <%= blog.title %>
+                                            </h2>
+                                            <p class="post-subtitle">
+                                                <%- blog.description.substring(0, 70) %> ......
+                                            </p>
+                                </a>
+                                <p class="post-meta">
+                                    Posted by
+                                    <span href="/user/<%= blog.createdBy._id %>">
+                                        <%= blog.createdBy.fullName %>
+                                    </span>
+                                    on <%= blog.createdAt.toDateString() %>
+                                </p>
+                                <!-- Displaying categories for each blog post -->
+                                <p class="post-categories"> Categories: <%= blog.category && blog.category.name ?
+                                        blog.category.name : "Uncategorized" %>
+                                </p>
+                            </div>
+                            <hr class="my-4" />
+                            <% }) %>
+                                <!-- Pager-->
+            </div>
+        </div>
+    </div>

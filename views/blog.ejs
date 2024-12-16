@@ -1,0 +1,27 @@
+<% layout("/layouts/boilerplate.ejs") %>
+    <header class="masthead" style="background-image: url('assets/img/home-bg.jpg')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="site-heading">
+                        <h1>Wander Write</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="mx-auto" style="width: 80vw;">
+        <div class="d-flex flex-row justify-content-around">
+            <h3>
+                Title: <%= blog.title %>
+            </h3>
+            <h3>
+               Category: <%= blog.category.name %>
+            </h3>
+        </div>
+        <img src="<%= blog.imageFeatured %>" alt="" class="" style="width: 50vw; height: 60vh; margin-left: 15vw; margin-bottom: 10px;" >
+        <h3>Description: </h3>
+        <p>
+            <%- blog.description %>
+        </p>
+    </div>

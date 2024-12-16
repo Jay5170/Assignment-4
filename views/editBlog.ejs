@@ -1,0 +1,24 @@
+<% layout("/layouts/dashboard.ejs") %>
+
+    <form action="/blog/edit-blog/<%= blog._id %>" method="POST">
+        <div class="form-group">
+            <label for="title">Blog Title</label>
+            <input type="text" id="title" name="title" class="form-control" value="<%= blog.title %>" required>
+        </div>
+        <div class="form-group">
+            <label for="category">Category</label>
+            <select id="category" name="category" class="form-control" required>
+                <% categories.forEach(category=> { %>
+                    <option value="<%= category._id %>" <option value="<%= category._id %>" <%= blog.category && category._id.equals(blog.category._id) ? 'selected' : '' %>>
+                        <%= category.name %>
+                    </option>
+                    <% }) %>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="rich-text-editor" name="description" class="form-control"
+                required><%- blog.description %></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="/css/admin.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet"
+        type="text/css" />
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+        rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tiny.cloud/1/z5imfjjlq0yt9rs29uws3d2v7ct1raos9apg8jyyf3i2d4rp/tinymce/5/tinymce.min.js"
+        referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea#rich-text-editor',
+            plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak code',
+            toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | code',
+            toolbar_mode: 'floating',
+            setup: function (editor) {
+                editor.on('change', function () {
+                    editor.save();
+                });
+            }
+        });
+    </script>
+    <style>
+        .truncate {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            /* Number of lines to show */
+            -webkit-box-orient: vertical;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="">
+        <header class="header">
+            <div class="logo">
+                <h1>Admin Panel</h1>
+            </div>
+            <div class="user-profile">
+                <img src="<%= user.profileImageURL %>" alt="Profile Picture">
+                <span>
+                    <%= user ? user.fullName : "Admin" %>
+                </span>
+            </div>
+        </header>
+        <div class="main-content">
+            <aside class="left-menu">
+                <ul class="">
+                    <li class=""><a href="/blog/all-blogs" class="lm-a">All Blogs</a></li>
+                    <li class=""><a href="/blog/add-new" class="lm-a">Add New Blog</a></li>
+                    <li class=""><a href="/category/all-categories" class="lm-a">All Categories</a></li>
+                    <li class=""><a href="/category/add-category" class="lm-a">Add New Category</a></li>
+                    <li class=""><a href="/user/logout" class="lm-a">Logout</a></li>
+                </ul>
+            </aside>
+            <section class="content-area">
+                <%- body %>
+            </section>
+        </div>
+    </div>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+</body>
+
+</html>

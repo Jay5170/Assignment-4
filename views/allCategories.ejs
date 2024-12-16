@@ -1,0 +1,29 @@
+<% layout("/layouts/dashboard.ejs") %>
+
+    <section class="content-area">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Index</th>
+                    <th>Category Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% categories.forEach((category, index)=> { %>
+                    <tr>
+                        <td>
+                            <%= index + 1 %>
+                        </td>
+                        <td>
+                            <%= category.name %>
+                        </td>
+                        <td>
+                            <a href="/category/edit-category/<%= category._id %>" class="btn btn-primary">Edit</a>
+                            <a href="/category/delete-category/<%= category._id %>" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+    </section>

@@ -1,0 +1,38 @@
+<% layout("/layouts/dashboard.ejs") %>
+
+<form action="/blog/home" method="POST" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" class="form-control" name="title" required>
+  </div>
+
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea id="rich-text-editor" class="form-control" name="description" required></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="imageThumbnail">Thumbnail Image</label>
+    <input type="file" name="imageThumbnail">
+  </div>
+
+  <div class="form-group">
+    <label for="imageFeatured">Featured Image</label>
+    <input type="file" name="imageFeatured">
+  </div>
+
+  <div class="form-group">
+    <label for="category">Category</label>
+    <select name="category" class="form-control" required>
+      <option value="">Select Category</option>
+      <% categories.forEach(category => { %>
+        <option value="<%= category._id %>"><%= category.name %></option>
+      <% }) %>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="button" class="btn btn-danger" onclick="window.location.href='/home';">Cancel</button>
+  </div>
+</form>

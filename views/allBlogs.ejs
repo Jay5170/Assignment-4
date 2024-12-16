@@ -1,0 +1,36 @@
+<% layout("/layouts/dashboard.ejs") %>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Index</th>
+                <th>Name/Title</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% blogs.forEach((blog, index)=> { %>
+                <tr>
+                    <td>
+                        <%= index + 1 %>
+                    </td> <!-- Display the index -->
+                    <td>
+                        <%= blog.title %>
+                    </td>
+                    <td>
+                        <%= blog.category && blog.category.name ? blog.category.name : "Uncategorized" %>
+                    </td>
+                    <td>
+                        <%- blog.description.substring(0, 50) %> ..
+                    </td>
+                    <td>
+                        <a href="/blog/edit-blog/<%= blog._id %>" class="btn btn-primary">Edit</a>
+                        <a href="/blog/delete-blog/<%= blog._id %>" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
